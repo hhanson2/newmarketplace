@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market49 — Contact</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Market<span>49</span></a>
+    <div class="nav-search">
+      <input type="text" placeholder="Search Listings..." id="searchInput" aria-label="Search listings" autocomplete="off" />
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+    <div class="nav-right">
+      <a href="listings.html" class="nav-cart">🛒</a>
+      <a href="#" class="nav-signin">Sign In</a>
+    </div>
+    <div class="toggle-pill" id="darkToggle">
+      <div class="knob"></div>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="listings.html">🔍 Browse Listings</a>
+    <a href="post-listing.html">📦 Post a Listing</a>
+    <a href="#">👤 Sign In</a>
+    <a href="listings.html">🛒 Cart</a>
+  </div>
+
+  <!-- CONTACT -->
+  <main class="contact-main">
+    <h1 class="h1" style="margin-bottom:8px;">Contact Us</h1>
+    <p class="body-regular" style="color:var(--text-muted); margin-bottom:32px;">
+      Have a question? We are here to help.
+    </p>
+
+    <form id="contactForm" novalidate style="display:flex; flex-direction:column; gap:16px;">
+
+      <div class="input-group">
+        <label>Your Name</label>
+        <input class="input-field" type="text" placeholder="Jane Smith" required />
+        <span class="input-error-msg">This field is required</span>
+      </div>
+
+      <div class="input-group">
+        <label>Email</label>
+        <input class="input-field" type="email" placeholder="jane@school.edu" required />
+        <span class="input-error-msg">This field is required</span>
+      </div>
+
+      <div class="input-group">
+        <label>Message</label>
+        <textarea class="input-field" placeholder="How can we help you?" required></textarea>
+        <span class="input-error-msg">This field is required</span>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="align-self:flex-start; min-width:160px;">
+        Send Message
+      </button>
+
+      <!-- Success message — hidden until form submits -->
+      <div id="contactSuccess" style="display:none; padding:12px 16px; background:var(--success); color:#fff; border-radius:var(--radius-sm); font-size:14px;">
+        ✓ Message sent successfully!
+      </div>
+
+    </form>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Help Center</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+    </div>
+    <p>© 2026 Market49</p>
+  </footer>
+
+  <script src="js/script.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      let valid = true;
+
+      document.querySelectorAll('#contactForm [required]').forEach(field => {
+        field.classList.remove('error', 'success');
+        if (!field.value.trim()) {
+          field.classList.add('error');
+          valid = false;
+        } else {
+          field.classList.add('success');
+        }
+      });
+
+      if (valid) {
+        const btn = document.querySelector('#contactForm .btn-primary');
+        btn.textContent = 'Sending...';
+        btn.disabled = true;
+
+        setTimeout(() => {
+          btn.textContent = 'Send Message';
+          btn.disabled = false;
+          document.getElementById('contactSuccess').style.display = 'block';
+          document.getElementById('contactForm').reset();
+          document.querySelectorAll('#contactForm .input-field').forEach(f => {
+            f.classList.remove('success');
+          });
+        }, 1200);
+      }
+    });
+  </script>
+</body>
+</html>

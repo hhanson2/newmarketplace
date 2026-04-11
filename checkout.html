@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market49 — Checkout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Market<span>49</span></a>
+    <div class="nav-search">
+      <input type="text" placeholder="Search Listings..." id="searchInput" aria-label="Search listings" autocomplete="off" />
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+    <div class="nav-right">
+      <a href="listings.html" class="nav-cart">🛒</a>
+      <a href="#" class="nav-signin">Sign In</a>
+    </div>
+    <div class="toggle-pill" id="darkToggle">
+      <div class="knob"></div>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="listings.html">🔍 Browse Listings</a>
+    <a href="post-listing.html">📦 Post a Listing</a>
+    <a href="#">👤 Sign In</a>
+    <a href="listings.html">🛒 Cart</a>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <span class="active">Shipping</span>
+    <span class="arrow">→</span>
+    <span>Payment</span>
+    <span class="arrow">→</span>
+    <span>Review</span>
+  </div>
+
+  <!-- CHECKOUT -->
+  <main style="flex:1;">
+    <div class="checkout-layout">
+
+      <!-- LEFT: Form -->
+      <form id="checkoutForm" novalidate>
+
+        <section style="margin-bottom:32px;">
+          <h2 class="h3" style="margin-bottom:20px;">Shipping / Pickup</h2>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+
+            <div class="input-row">
+              <div class="input-group">
+                <label>Full Name</label>
+                <input class="input-field" type="text" placeholder="Jane Smith" required />
+                <span class="input-error-msg">This field is required</span>
+              </div>
+              <div class="input-group">
+                <label>Phone / Email</label>
+                <input class="input-field" type="text" placeholder="jane@school.edu" required />
+                <span class="input-error-msg">This field is required</span>
+              </div>
+            </div>
+
+            <div class="input-group">
+              <label>Street Address</label>
+              <input class="input-field" type="text" placeholder="123 Campus Dr" required />
+              <span class="input-error-msg">This field is required</span>
+            </div>
+
+            <div class="input-row-3">
+              <div class="input-group">
+                <label>City</label>
+                <input class="input-field" type="text" placeholder="Charlotte" required />
+                <span class="input-error-msg">Required</span>
+              </div>
+              <div class="input-group">
+                <label>State</label>
+                <input class="input-field" type="text" placeholder="NC" required maxlength="2" />
+                <span class="input-error-msg">Required</span>
+              </div>
+              <div class="input-group">
+                <label>ZIP</label>
+                <input class="input-field" type="text" placeholder="28213" required maxlength="5" />
+                <span class="input-error-msg">Required</span>
+              </div>
+            </div>
+
+            <div>
+              <label style="font-size:12px; color:var(--text-muted); display:block; margin-bottom:8px;">Fulfillment</label>
+              <div class="delivery-toggle">
+                <button type="button" class="delivery-btn active">Delivery</button>
+                <button type="button" class="delivery-btn">Local Pickup</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <section style="margin-bottom:32px;">
+          <h2 class="h3" style="margin-bottom:20px;">Payment</h2>
+          <div style="display:flex; flex-direction:column; gap:16px;">
+
+            <div class="input-group">
+              <label>Card Number</label>
+              <input class="input-field" type="text" placeholder="1234 5678 9012 3456" required maxlength="19" />
+              <span class="input-error-msg">This field is required</span>
+            </div>
+
+            <div class="input-row-3">
+              <div class="input-group">
+                <label>MM / YY</label>
+                <input class="input-field" type="text" placeholder="08/27" required maxlength="5" />
+                <span class="input-error-msg">Required</span>
+              </div>
+              <div class="input-group">
+                <label>CVC</label>
+                <input class="input-field" type="text" placeholder="123" required maxlength="3" />
+                <span class="input-error-msg">Required</span>
+              </div>
+              <div class="input-group">
+                <label>Name on Card</label>
+                <input class="input-field" type="text" placeholder="Jane Smith" required />
+                <span class="input-error-msg">Required</span>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a href="listing-detail.html" class="btn btn-secondary">Back To Cart</a>
+          <button type="submit" class="btn btn-primary">Place Order</button>
+        </div>
+
+        <p style="margin-top:16px; font-size:11px; color:var(--text-muted);">
+          By placing your order, you agree to Market49's Terms of Service.
+        </p>
+
+      </form>
+
+      <!-- RIGHT: Order Summary -->
+      <aside>
+        <div class="order-summary-card">
+          <h3 class="h3" style="margin-bottom:16px;">Order Summary</h3>
+          <div class="summary-item">
+            <div class="summary-thumb"></div>
+            <div>
+              <p style="font-size:14px; font-weight:600;">Calculus Textbook, 3rd Ed.</p>
+              <p style="font-size:12px; color:var(--text-muted);">Qty: 1</p>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="summary-row"><span>Item Subtotal</span><span>$35.00</span></div>
+          <div class="summary-row"><span>Service fee</span><span>$2.00</span></div>
+          <div class="summary-row"><span>Shipping</span><span>$4.99</span></div>
+          <div class="divider"></div>
+          <div class="summary-row total"><span>Total</span><span>$41.99</span></div>
+          <div style="margin-top:16px;">
+            <input class="input-field" type="text" placeholder="Promo code" style="margin-bottom:8px;" />
+            <button class="btn btn-secondary btn-full">Apply Promo Code</button>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <p>© 2026 Market49</p>
+  </footer>
+
+  <!-- SPINNER -->
+  <div class="spinner-overlay" id="spinnerOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

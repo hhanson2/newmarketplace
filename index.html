@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market49 — Buy, Sell & Find Local Listings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Market<span>49</span></a>
+
+    <div class="nav-search">
+      <input type="text" placeholder="Search Listings..." id="searchInput" aria-label="Search listings" autocomplete="off" />
+      <!-- Search suggestions dropdown -->
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+
+    <div class="nav-right">
+      <a href="listings.html" class="nav-cart">🛒</a>
+      <a href="#" class="nav-signin">Sign In</a>
+      
+    </div>
+
+    <div class="toggle-pill" id="darkToggle">
+        <div class="knob"></div>
+      </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="listings.html">🔍 Browse Listings</a>
+    <a href="post-listing.html">📦 Post a Listing</a>
+    <a href="#">👤 Sign In</a>
+    <a href="listings.html">🛒 Cart</a>
+  </div>
+
+  <!-- HERO -->
+  <main class="hero">
+    <h1 class="h1">Buy, Sell, and Find Local Listings</h1>
+    <p class="body-regular hero-sub">Browse or post listings in your area</p>
+    <div class="hero-btns">
+      <a href="listings.html" class="btn btn-primary">Browse Listings</a>
+      <a href="post-listing.html" class="btn btn-secondary">Post Listings</a>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Help Center</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Sign In</a>
+      <a href="#">FAQs</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <p>© 2026 Market49</p>
+  </footer>
+
+  <!-- SPINNER -->
+  <div class="spinner-overlay" id="spinnerOverlay">
+    <div class="spinner"></div>
+  </div>  
+  
+  <script src="js/script.js"></script>
+</body>
+</html>

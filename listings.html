@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market49 — Browse Listings</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Market<span>49</span></a>
+    <div class="nav-search">
+      <input type="text" placeholder="Search Listings..." id="searchInput" aria-label="Search listings" autocomplete="off" />
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+    <div class="nav-right">
+      <a href="listings.html" class="nav-cart">🛒</a>
+      <a href="#" class="nav-signin">Sign In</a>
+      
+    </div>
+
+    <div class="toggle-pill" id="darkToggle">
+        <div class="knob"></div>
+      </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="listings.html">🔍 Browse Listings</a>
+    <a href="post-listing.html">📦 Post a Listing</a>
+    <a href="#">👤 Sign In</a>
+    <a href="listings.html">🛒 Cart</a>
+  </div>
+
+  <!-- MAIN -->
+  <main style="flex:1;">
+
+    <h2 class="section-title" id="resultsHeading">Browse Listings</h2>
+
+    <!-- Skeleton loading — shows while content loads -->
+    <div class="listings-grid" id="skeletonGrid">
+      <div class="skeleton-card">
+        <div class="skeleton skeleton-img"></div>
+        <div class="skeleton-body">
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-price"></div>
+        </div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton skeleton-img"></div>
+        <div class="skeleton-body">
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-price"></div>
+        </div>
+      </div>
+      <div class="skeleton-card">
+        <div class="skeleton skeleton-img"></div>
+        <div class="skeleton-body">
+          <div class="skeleton skeleton-title"></div>
+          <div class="skeleton skeleton-price"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actual listings grid — hidden until skeleton fades -->
+    <div class="listings-grid" id="listingsGrid" style="display:none;">
+
+      <a href="listing-detail.html" class="card" data-name="Calculus Textbook, 3rd Ed.">
+        <div class="card-img">
+          <img src="https://placehold.co/700x300/e0e0e0/666?text=Calculus Textbook" alt="Calculus Textbook" />
+          
+        </div>
+        <div class="card-body">
+          <p class="card-name">Calculus Textbook, 3rd Ed.</p>
+          <p class="card-price">$35.00</p>
+        </div>
+        <div class="card-footer">
+          <span></span>
+          <div class="card-actions">
+            <button class="like-btn">🤍</button>
+            <button class="delete-btn">🗑</button>
+          </div>
+        </div>
+      </a>
+
+      <a href="listing-detail.html" class="card" data-name="Mechanical Keyboard">
+        <div class="card-img">
+          <img src="https://placehold.co/400x300/e0e0e0/666?text=Keyboard" alt="Mechanical Keyboard" />
+        </div>
+        <div class="card-body">
+          <p class="card-name">Mechanical Keyboard</p>
+          <p class="card-price">$60.00</p>
+        </div>
+        <div class="card-footer">
+          <span></span>
+          <div class="card-actions">
+            <button class="like-btn">🤍</button>
+            <button class="delete-btn">🗑</button>
+          </div>
+        </div>
+      </a>
+
+      <a href="listing-detail.html" class="card" data-name="HDMI Cable 6ft">
+        <div class="card-img">
+          <img src="https://placehold.co/400x300/e0e0e0/666?text=HDMI+Cable" alt="HDMI Cable" />
+        </div>
+        <div class="card-body">
+          <p class="card-name">HDMI Cable 6ft</p>
+          <p class="card-price">$12.00</p>
+        </div>
+        <div class="card-footer">
+          <span></span>
+          <div class="card-actions">
+            <button class="like-btn">🤍</button>
+            <button class="delete-btn">🗑</button>
+          </div>
+        </div>
+      </a>
+
+      <a href="listing-detail.html" class="card" data-name="Adjustable Desk Lamp">
+        <div class="card-img">
+          <img src="https://placehold.co/400x300/e0e0e0/666?text=Desk+Lamp" alt="Desk Lamp" />
+        </div>
+        <div class="card-body">
+          <p class="card-name">Adjustable Desk Lamp</p>
+          <p class="card-price">$25.00</p>
+        </div>
+        <div class="card-footer">
+          <span></span>
+          <div class="card-actions">
+            <button class="like-btn">🤍</button>
+            <button class="delete-btn">🗑</button>
+          </div>
+        </div>
+      </a>
+
+      <a href="listing-detail.html" class="card" data-name="North Face Backpack">
+        <div class="card-img">
+          <img src="https://placehold.co/400x300/e0e0e0/666?text=Backpack" alt="Backpack" />
+        </div>
+        <div class="card-body">
+          <p class="card-name">North Face Backpack</p>
+          <p class="card-price">$45.00</p>
+        </div>
+        <div class="card-footer">
+          <span></span>
+          <div class="card-actions">
+            <button class="like-btn">🤍</button>
+            <button class="delete-btn">🗑</button>
+          </div>
+        </div>
+      </a>
+
+      <a href="listing-detail.html" class="card" data-name="24 inch Monitor">
+        <div class="card-img">
+          <img src="https://placehold.co/400x300/e0e0e0/666?text=Monitor" alt="Monitor" />
+        </div>
+        <div class="card-body">
+          <p class="card-name">24" Monitor</p>
+          <p class="card-price">$120.00</p>
+        </div>
+        <div class="card-footer">
+          <span></span>
+          <div class="card-actions">
+            <button class="like-btn">🤍</button>
+            <button class="delete-btn">🗑</button>
+          </div>
+        </div>
+      </a>
+
+      <a href="listing-detail.html" class="card" data-name="Scientific Calculator">
+        <div class="card-img">
+          <img src="https://placehold.co/400x300/e0e0e0/666?text=Calculator" alt="Calculator" />
+        </div>
+        <div class="card-body">
+          <p class="card-name">Scientific Calculator</p>
+          <p class="card-price">$15.00</p>
+        </div>
+        <div class="card-footer">
+          <span></span>
+          <div class="card-actions">
+            <button class="like-btn">🤍</button>
+            <button class="delete-btn">🗑</button>
+          </div>
+        </div>
+      </a>
+
+      <a href="listing-detail.html" class="card" data-name="Dorm Mini Fridge">
+        <div class="card-img">
+          <img src="https://placehold.co/400x300/e0e0e0/666?text=Mini+Fridge" alt="Mini Fridge" />
+        </div>
+        <div class="card-body">
+          <p class="card-name">Dorm Mini Fridge</p>
+          <p class="card-price">$80.00</p>
+        </div>
+        <div class="card-footer">
+          <span></span>
+          <div class="card-actions">
+            <button class="like-btn">🤍</button>
+            <button class="delete-btn">🗑</button>
+          </div>
+        </div>
+      </a>
+
+    </div>
+
+    <!-- No results message -->
+    <div class="no-results" id="noResults">
+      No listings found. Try a different search.
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Help Center</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+    </div>
+    <p>© 2026 Market49</p>
+  </footer>
+
+  <!-- SPINNER -->
+  <div class="spinner-overlay" id="spinnerOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    // Show skeleton on load then fade in real cards
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('skeletonGrid').style.display = 'none';
+        document.getElementById('listingsGrid').style.display = 'grid';
+      }, 1000);
+    });
+
+    // Filter cards based on search query from URL or typing
+    const params = new URLSearchParams(window.location.search);
+    const q = params.get('q');
+    if (q) {
+      document.getElementById('resultsHeading').textContent = `Results for "${q}"`;
+      document.getElementById('searchInput').value = q;
+      filterCards(q);
+    }
+
+    function filterCards(query) {
+      const cards = document.querySelectorAll('#listingsGrid .card');
+      const noResults = document.getElementById('noResults');
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const name = card.dataset.name.toLowerCase();
+        if (name.includes(query.toLowerCase())) {
+          card.style.display = 'block';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      noResults.classList.toggle('visible', visibleCount === 0);
+    }
+
+    // Live filter as user types
+    document.getElementById('searchInput').addEventListener('input', (e) => {
+      const query = e.target.value.trim();
+      const heading = document.getElementById('resultsHeading');
+
+      if (query) {
+        heading.textContent = `Results for "${query}"`;
+        filterCards(query);
+      } else {
+        heading.textContent = 'Browse Listings';
+        document.querySelectorAll('#listingsGrid .card').forEach(c => c.style.display = 'block');
+        document.getElementById('noResults').classList.remove('visible');
+      }
+    });
+  </script>
+</body>
+</html>

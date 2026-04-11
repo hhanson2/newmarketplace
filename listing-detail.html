@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Market49 — Listing Detail</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="page-wrapper">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Market<span>49</span></a>
+    <div class="nav-search">
+      <input type="text" placeholder="Search Listings..." id="searchInput" aria-label="Search listings" autocomplete="off" />
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+    <div class="nav-right">
+      <a href="listings.html" class="nav-cart">🛒</a>
+      <a href="#" class="nav-signin">Sign In</a>
+    </div>
+    <div class="toggle-pill" id="darkToggle">
+      <div class="knob"></div>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="listings.html">🔍 Browse Listings</a>
+    <a href="post-listing.html">📦 Post a Listing</a>
+    <a href="#">👤 Sign In</a>
+    <a href="listings.html">🛒 Cart</a>
+  </div>
+
+  <!-- LISTING DETAIL -->
+  <main style="flex:1;">
+    <div class="listing-layout">
+
+      <!-- Image -->
+      <div class="listing-img">
+        <img src="https://placehold.co/600x450/e0e0e0/e0e0e0" alt="Calculus Textbook" />
+      </div>
+
+      <!-- Info -->
+      <div class="listing-info">
+        <p class="listing-title">Calculus Textbook, 3rd Ed.</p>
+        <p class="listing-price">$35.00</p>
+        <p class="listing-seller">Posted by: <strong>alex_student</strong></p>
+        <p class="listing-desc">
+          Great condition, only used for one semester. No highlighting or 
+          writing inside. Pages are clean and binding is tight. Comes with 
+          the original access code unused. Perfect for Calc I or Calc II.
+        </p>
+        <div class="listing-actions">
+          <a href="checkout.html" class="btn btn-primary btn-full">Buy Now</a>
+          <button class="btn btn-secondary btn-full">Message Seller</button>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Help Center</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+    </div>
+    <p>© 2026 Market49</p>
+  </footer>
+
+  <!-- SPINNER -->
+  <div class="spinner-overlay" id="spinnerOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="js/script.js"></script>
+  <script>
+    // Show spinner on Buy Now click
+    document.querySelector('.btn-primary').addEventListener('click', (e) => {
+      e.preventDefault();
+      document.getElementById('spinnerOverlay').classList.add('visible');
+      setTimeout(() => {
+        window.location.href = 'checkout.html';
+      }, 800);
+    });
+  </script>
+</body>
+</html>
