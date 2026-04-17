@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -50,21 +50,21 @@
     <form id="contactForm" novalidate style="display:flex; flex-direction:column; gap:16px;">
 
       <div class="input-group">
-        <label>Your Name</label>
-        <input class="input-field" type="text" placeholder="Jane Smith" required />
-        <span class="input-error-msg">This field is required</span>
+        <label for="nameInput">Your Name</label>
+        <input class="input-field" id="nameInput" name="name" type="text" placeholder="Jane Smith" required />
+        <span class="input-error-msg" id="nameError">This field is required</span>
       </div>
 
       <div class="input-group">
-        <label>Email</label>
-        <input class="input-field" type="email" placeholder="jane@school.edu" required />
-        <span class="input-error-msg">This field is required</span>
+        <label for="emailInput">Email</label>
+        <input class="input-field" id="emailInput" name="email" type="email" placeholder="jane@school.edu" required />
+        <span class="input-error-msg" id="emailError">This field is required</span>
       </div>
 
       <div class="input-group">
-        <label>Message</label>
-        <textarea class="input-field" placeholder="How can we help you?" required></textarea>
-        <span class="input-error-msg">This field is required</span>
+        <label for="messageInput">Message</label>
+        <textarea class="input-field" id="messageInput" name="message" placeholder="How can we help you?" required></textarea>
+        <span class="input-error-msg" id="messageError">This field is required</span>
       </div>
 
       <button type="submit" class="btn btn-primary" style="align-self:flex-start; min-width:160px;">
@@ -92,35 +92,89 @@
 
   <script src="js/script.js"></script>
   <script>
-    document.getElementById('contactForm').addEventListener('submit', (e) => {
-      e.preventDefault();
-      let valid = true;
+    // validation rules — each returns an error message string, or '' if the value is valid
+    const validators = {
+      name: (val) => {
+        if (!val.trim()) return 'Please enter your name';
+        if (val.trim().length < 2) return 'Name must be at least 2 characters';
+        return '';
+      },
+      email: (val) => {
+        if (!val.trim()) return 'Please enter your email';
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailPattern.test(val.trim())) return 'Enter a valid email like jane@school.edu';
+        return '';
+      },
+      message: (val) => {
+        if (!val.trim()) return 'Please enter a message';
+        if (val.trim().length < 10) return 'Tell us a bit more — at least 10 characters';
+        return '';
+      }
+    };
 
-      document.querySelectorAll('#contactForm [required]').forEach(field => {
-        field.classList.remove('error', 'success');
-        if (!field.value.trim()) {
-          field.classList.add('error');
-          valid = false;
-        } else {
-          field.classList.add('success');
+    // validate one field, update its UI inline, return true if valid
+    function validateField(field) {
+      const rule = validators[field.name];
+      if (!rule) return true;
+
+      const errorMsg = rule(field.value);
+      const errorSpan = document.getElementById(field.name + 'Error');
+
+      field.classList.remove('error', 'success');
+
+      if (errorMsg) {
+        field.classList.add('error');
+        errorSpan.textContent = errorMsg;
+        return false;
+      } else {
+        field.classList.add('success');
+        return true;
+      }
+    }
+
+    const form = document.getElementById('contactForm');
+    const fields = form.querySelectorAll('[name]');
+
+    // on blur — validate when user tabs out of a field
+    fields.forEach(field => {
+      field.addEventListener('blur', () => validateField(field));
+
+      // on input — if the field is currently flagged as error, re-check as they type
+      // so they see the error clear the moment their input becomes valid
+      field.addEventListener('input', () => {
+        if (field.classList.contains('error')) {
+          validateField(field);
         }
       });
+    });
 
-      if (valid) {
-        const btn = document.querySelector('#contactForm .btn-primary');
-        btn.textContent = 'Sending...';
-        btn.disabled = true;
+    // on submit — validate everything, block if any fail, focus the first bad field
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
 
-        setTimeout(() => {
-          btn.textContent = 'Send Message';
-          btn.disabled = false;
-          document.getElementById('contactSuccess').style.display = 'block';
-          document.getElementById('contactForm').reset();
-          document.querySelectorAll('#contactForm .input-field').forEach(f => {
-            f.classList.remove('success');
-          });
-        }, 1200);
+      let firstInvalid = null;
+      fields.forEach(field => {
+        const ok = validateField(field);
+        if (!ok && !firstInvalid) firstInvalid = field;
+      });
+
+      if (firstInvalid) {
+        firstInvalid.focus();
+        return;
       }
+
+      // all valid — send
+      const btn = form.querySelector('.btn-primary');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+        document.getElementById('contactSuccess').style.display = 'block';
+        form.reset();
+        fields.forEach(f => f.classList.remove('success', 'error'));
+      }, 1200);
     });
   </script>
 </body>
