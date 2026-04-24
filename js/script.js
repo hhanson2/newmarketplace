@@ -46,19 +46,39 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+  // dark mode-updated
   // dark mode
-  const togglePill = document.getElementById('darkToggle');
+const togglePill = document.getElementById('darkToggle');
 
-  if (localStorage.getItem('market49-dark') === 'true') {
-    document.body.classList.add('dark');
-  }
+function updateDarkToggleLabel() {
+  if (!togglePill) return;
 
-  if (togglePill) {
-    togglePill.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      localStorage.setItem('market49-dark', document.body.classList.contains('dark'));
-    });
-  }
+  const isDark = document.body.classList.contains('dark');
+
+  togglePill.setAttribute(
+    'aria-label',
+    isDark ? 'Switch to light mode' : 'Switch to dark mode'
+  );
+}
+
+if (localStorage.getItem('market49-dark') === 'true') {
+  document.body.classList.add('dark');
+}
+
+updateDarkToggleLabel();
+
+if (togglePill) {
+  togglePill.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+
+    localStorage.setItem(
+      'market49-dark',
+      document.body.classList.contains('dark')
+    );
+
+    updateDarkToggleLabel();
+  });
+}
 
   // search
   const searchInput       = document.getElementById('searchInput');
