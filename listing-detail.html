@@ -18,7 +18,7 @@
       <div class="search-suggestions" id="searchSuggestions"></div>
     </div>
     <div class="nav-right">
-      <a href="listings.html" class="nav-cart">🛒</a>
+      <a href="cart.html" class="nav-cart">🛒<span class="cart-badge">0</span></a>
       <a href="#" class="nav-signin">Sign In</a>
     </div>
     <button class="toggle-pill" id="darkToggle" type="button" aria-label="Switch to dark mode">
@@ -35,9 +35,10 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">🏠 Home</a>
     <a href="listings.html">🔍 Browse Listings</a>
-    <a href="post-listing.html">📦 Post a Listing</a>
+    <a href="post-listings.html">📦 Post a Listing</a>
     <a href="#">👤 Sign In</a>
-    <a href="listings.html">🛒 Cart</a>
+    <a href="cart.html" class="nav-cart">🛒<span class="cart-badge">0</span></a>
+     <a href="signin.html" class="nav-signin" id="navAuthLink">Sign In</a>
   </div>
 
   <!-- LISTING DETAIL -->
@@ -60,12 +61,34 @@
           the original access code unused. Perfect for Calc I or Calc II.
         </p>
         <div class="listing-actions">
-          <a href="checkout.html" class="btn btn-primary btn-full">Buy Now</a>
-          <button class="btn btn-secondary btn-full">Message Seller</button>
-        </div>
-      </div>
-
+  <div class="input-group">
+    <label>Quantity</label>
+    <div class="qty-stepper" id="detailQty">
+      <button type="button" data-action="dec" aria-label="Decrease">−</button>
+      <input type="number" value="1" min="1" max="10" aria-label="Quantity" />
+      <button type="button" data-action="inc" aria-label="Increase">+</button>
     </div>
+  </div>
+  <button id="addToCartBtn" class="btn btn-secondary btn-full">Add to Cart</button>
+  <a href="checkout.html" class="btn btn-primary btn-full">Buy Now</a>
+  <button id="messageSellerBtn" class="btn btn-secondary btn-full">Message Seller</button>
+
+<form id="messageForm" class="auth-form" hidden style="margin-top: 1rem;">
+  <div class="input-group">
+    <label for="messageText">Your message</label>
+    <textarea id="messageText" class="input-field" rows="4" required placeholder="Hi, is this still available?"></textarea>
+  </div>
+  <div style="display: flex; gap: 0.5rem;">
+    <button type="button" id="messageCancel" class="btn btn-secondary" style="flex: 1;">Cancel</button>
+    <button type="submit" class="btn btn-primary" style="flex: 1;">Send</button>
+  </div>
+</form>
+
+<p id="messageSent" hidden style="color: var(--success); text-align: center; margin-top: 1rem;">
+  ✓ Message sent!
+</p>
+
+</div>
   </main>
 
   <!-- FOOTER -->
@@ -85,15 +108,65 @@
   </div>
 
   <script src="js/script.js"></script>
-  <script>
-    // Show spinner on Buy Now click
-    document.querySelector('.btn-primary').addEventListener('click', (e) => {
-      e.preventDefault();
-      document.getElementById('spinnerOverlay').classList.add('visible');
-      setTimeout(() => {
-        window.location.href = 'checkout.html';
-      }, 800);
-    });
-  </script>
+ <script>
+  // load the right listing based on URL
+  const params = new URLSearchParams(window.location.search);
+  const id = params.get('id');
+
+  if (id) {
+    const all = JSON.parse(localStorage.getItem('market49-listings') || '[]');
+    const item = all.find(l => l.id === id);
+
+    if (item) {
+      document.querySelector('.listing-img img').src = item.image || `https://placehold.co/600x450/e0e0e0/666?text=${encodeURIComponent(item.name)}`;
+      document.querySelector('.listing-img img').alt = item.name;
+      document.querySelector('.listing-title').textContent = item.name;
+      document.querySelector('.listing-price').textContent = item.price;
+      document.querySelector('.listing-desc').textContent = item.description || 'No description provided.';
+      document.title = `${item.name} — Market49`;
+    }
+  }
+
+  // Buy Now spinner
+  document.querySelector('.btn-primary').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('spinnerOverlay').classList.add('visible');
+    setTimeout(() => {
+      window.location.href = 'checkout.html';
+    }, 800);
+  });
+
+
+  
+  // Message Seller form
+const messageBtn = document.getElementById('messageSellerBtn');
+const messageForm = document.getElementById('messageForm');
+const messageSent = document.getElementById('messageSent');
+
+messageBtn.addEventListener('click', () => {
+  messageForm.hidden = false;
+  messageBtn.hidden = true;
+  document.getElementById('messageText').focus();
+});
+
+messageForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const text = document.getElementById('messageText').value.trim();
+  if (!text) return;
+
+  messageForm.hidden = true;
+  messageSent.hidden = false;
+});
+
+
+document.getElementById('messageCancel').addEventListener('click', () => {
+  messageForm.hidden = true;
+  messageBtn.hidden = false;
+  document.getElementById('messageText').value = '';
+});
+</script>
+
+
+
 </body>
 </html>

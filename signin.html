@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — Market49</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="page-wrapper">
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Market<span>49</span></a>
+    <div class="nav-search">
+      <input type="text" placeholder="Search Listings..." id="searchInput" aria-label="Search listings" autocomplete="off" />
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+    <div class="nav-right">
+      <a href="cart.html" class="nav-cart">🛒<span class="cart-badge">0</span></a>
+      <a href="signin.html" class="nav-signin" id="navAuthLink">Sign In</a>
+    </div>
+    <button class="toggle-pill" id="darkToggle" type="button" aria-label="Switch to dark mode"><span class="knob"></span></button>
+    <button class="hamburger" id="hamburger" aria-label="Open menu"><span></span><span></span><span></span></button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="listings.html">🔍 Browse Listings</a>
+    <a href="post-listings.html">📦 Post a Listing</a>
+    <a href="signin.html">👤 Sign In</a>
+    <a href="cart.html">🛒 Cart</a>
+  </div>
+
+  <main class="auth-main">
+    <div class="auth-card">
+      <h1>Sign In</h1>
+      <p>Enter your email and password. New here? Just pick a password — we'll create your account.</p>
+      <form id="signinForm" class="auth-form" novalidate>
+  <div class="input-group">
+    <input type="email" id="signinEmail" class="input-field" placeholder="you@example.com" required autocomplete="email" />
+    <span class="input-error-msg" id="emailErr">Enter a valid email.</span>
+  </div>
+  <div class="input-group">
+    <input type="password" id="signinPassword" class="input-field" placeholder="Password" required autocomplete="current-password" minlength="6" />
+    <span class="input-error-msg" id="passwordErr">Password must be at least 6 characters.</span>
+  </div>
+  <button type="submit" class="btn btn-primary btn-full">Sign In</button>
+</form>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2026 Market49</p>
+  </footer>
+
+  <div class="spinner-overlay" id="spinnerOverlay"><div class="spinner"></div></div>
+  <script src="js/script.js"></script>
+</body>
+</html>

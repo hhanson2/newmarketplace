@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Post a Listing — Market49</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body class="page-wrapper">
+
+  <!-- NAVBAR (same as index) -->
+  <nav class="navbar">
+    <a href="index.html" class="nav-logo">Market<span>49</span></a>
+    <div class="nav-search">
+      <input type="text" placeholder="Search Listings..." id="searchInput" aria-label="Search listings" autocomplete="off" />
+      <div class="search-suggestions" id="searchSuggestions"></div>
+    </div>
+    <div class="nav-right">
+      <a href="cart.html" class="nav-cart">🛒<span class="cart-badge">0</span></a>
+      <a href="#" class="nav-signin">Sign In</a>
+    </div>
+    <button class="toggle-pill" id="darkToggle" type="button" aria-label="Switch to dark mode">
+      <span class="knob"></span>
+    </button>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html">🏠 Home</a>
+    <a href="listings.html">🔍 Browse Listings</a>
+    <a href="post-listings.html">📦 Post a Listing</a>
+    <a href="#">👤 Sign In</a>
+    <a href="cart.html" class="nav-cart">🛒<span class="cart-badge">0</span></a>
+    <a href="signin.html" class="nav-signin" id="navAuthLink">Sign In</a>
+  </div>
+
+  <main class="post-main">
+    <h1 class="h2" style="margin-bottom: 1.5rem;">Post a Listing</h1>
+
+    <form id="postForm" class="post-form" novalidate>
+
+      <div class="input-group">
+        <label for="postTitle">Title</label>
+        <input type="text" id="postTitle" class="input-field" required maxlength="80" />
+        <span class="input-error-msg">Please enter a title.</span>
+      </div>
+
+      <div class="input-row">
+        <div class="input-group">
+          <label for="postPrice">Price ($)</label>
+          <input type="number" id="postPrice" class="input-field" required min="0" step="0.01" />
+          <span class="input-error-msg">Enter a valid price.</span>
+        </div>
+
+        <div class="input-group">
+          <label for="postCondition">Condition</label>
+          <select id="postCondition" class="input-field" required>
+            <option value="">Select…</option>
+            <option value="New">New</option>
+            <option value="Like New">Like New</option>
+            <option value="Good">Good</option>
+            <option value="Fair">Fair</option>
+            <option value="For Parts">For Parts</option>
+          </select>
+          <span class="input-error-msg">Pick a condition.</span>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label for="postCategory">Category</label>
+        <select id="postCategory" class="input-field" required>
+          <option value="">Select…</option>
+          <option value="textbooks">Textbooks</option>
+          <option value="furniture">Furniture</option>
+          <option value="electronics">Electronics</option>
+          <option value="housing">Housing</option>
+          <option value="tickets">Tickets</option>
+          <option value="other">Other</option>
+        </select>
+        <span class="input-error-msg">Pick a category.</span>
+      </div>
+
+      <div class="input-group">
+        <label for="postImage">Image</label>
+        <input type="file" id="postImage" class="input-field" accept="image/*" />
+        <span class="body-small" style="color: var(--text-muted);">Optional. Max ~2MB.</span>
+        <span class="input-error-msg" id="imageError">Image is too large or invalid.</span>
+      </div>
+
+      <div class="input-group">
+        <label for="postDesc">Description</label>
+        <textarea id="postDesc" class="input-field" required maxlength="500" rows="5"></textarea>
+        <span class="input-error-msg">Please add a description.</span>
+      </div>
+
+      <div id="postSuccess" class="post-success" hidden>
+        ✅ Listing posted! It's now visible on the listings page.
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-full">Post Listing</button>
+    </form>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="#">Help Center</a>
+      <a href="contact.html">Contact</a>
+      <a href="#">Sign In</a>
+      <a href="#">FAQs</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <p>© 2026 Market49</p>
+  </footer>
+
+  <div class="spinner-overlay" id="spinnerOverlay">
+    <div class="spinner"></div>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>

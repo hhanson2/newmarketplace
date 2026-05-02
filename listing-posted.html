@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Market49 — Buy, Sell & Find Local Listings</title>
+  <title>Listing Posted — Market49</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body class="page-wrapper">
@@ -14,51 +13,48 @@
   <!-- NAVBAR -->
   <nav class="navbar">
     <a href="index.html" class="nav-logo">Market<span>49</span></a>
-
     <div class="nav-search">
       <input type="text" placeholder="Search Listings..." id="searchInput" aria-label="Search listings" autocomplete="off" />
-      <!-- Search suggestions dropdown -->
       <div class="search-suggestions" id="searchSuggestions"></div>
     </div>
-
     <div class="nav-right">
       <a href="cart.html" class="nav-cart">🛒<span class="cart-badge">0</span></a>
       <a href="#" class="nav-signin">Sign In</a>
-      
     </div>
-
     <button class="toggle-pill" id="darkToggle" type="button" aria-label="Switch to dark mode">
-  <span class="knob"></span>
-</button>
-
+      <span class="knob"></span>
+    </button>
     <button class="hamburger" id="hamburger" aria-label="Open menu">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
   </nav>
 
-  <!-- MOBILE MENU -->
   <div class="mobile-menu" id="mobileMenu">
     <a href="index.html">🏠 Home</a>
     <a href="listings.html">🔍 Browse Listings</a>
     <a href="post-listings.html">📦 Post a Listing</a>
     <a href="#">👤 Sign In</a>
     <a href="cart.html" class="nav-cart">🛒<span class="cart-badge">0</span></a>
-     <a href="signin.html" class="nav-signin" id="navAuthLink">Sign In</a>  
+    <a href="signin.html" class="nav-signin" id="navAuthLink">Sign In</a>
   </div>
 
-  <!-- HERO -->
-<main class="hero">
-    <h1 class="h1">Buy, Sell, and Find Local Listings</h1>
-    
-    <div class="hero-btns">
-      <a href="listings.html" class="btn btn-primary">Browse Listings</a>
-      <a href="post-listings.html" class="btn btn-secondary">Post Listings</a>
+  <main class="hero">
+    <div class="confirm-card">
+      <div class="checkmark-circle">✓</div>
+      <h1 class="h2 confirm-title">Listing Posted!</h1>
+      <p class="body-regular confirm-sub">
+        Your listing is now live and visible to other students browsing Market49.
+      </p>
+
+      <div id="postedSummary" class="posted-summary"></div>
+
+      <div class="confirm-actions">
+        <a href="listings.html" class="btn btn-primary">View All Listings</a>
+        <a href="post-listing.html" class="btn btn-secondary">Post Another</a>
+      </div>
     </div>
   </main>
 
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="footer-links">
       <a href="#">Help Center</a>
@@ -71,11 +67,10 @@
     <p>© 2026 Market49</p>
   </footer>
 
-  <!-- SPINNER -->
   <div class="spinner-overlay" id="spinnerOverlay">
     <div class="spinner"></div>
-  </div>  
-  
+  </div>
+
   <script src="js/script.js"></script>
 </body>
 </html>
