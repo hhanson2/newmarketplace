@@ -42,25 +42,20 @@
   </div>
 
   <!-- LISTING DETAIL -->
-  <main style="flex:1;">
-    <div class="listing-layout">
+<main style="flex:1;">
+  <div class="listing-layout">
 
-      <!-- Image -->
-      <div class="listing-img">
-        <img src="https://placehold.co/600x450/e0e0e0/e0e0e0" alt="Calculus Textbook" />
-      </div>
+    <!-- Image -->
+    <div class="listing-img">
+      <img src="" alt="" />
+    </div>
 
-      <!-- Info -->
-      <div class="listing-info">
-        <p class="listing-title">Calculus Textbook, 3rd Ed.</p>
-        <p class="listing-price">$35.00</p>
-        <p class="listing-seller">Posted by: <strong>alex_student</strong></p>
-        <p class="listing-desc">
-          Great condition, only used for one semester. No highlighting or 
-          writing inside. Pages are clean and binding is tight. Comes with 
-          the original access code unused. Perfect for Calc I or Calc II.
-        </p>
-        <div class="listing-actions">
+    <!-- Info -->
+    <div class="listing-info">
+      <p class="listing-title">Loading...</p>
+      <p class="listing-price"></p>
+      <p class="listing-desc"></p>
+      <div class="listing-actions">
   <div class="input-group">
     <label>Quantity</label>
     <div class="qty-stepper" id="detailQty">
@@ -114,18 +109,23 @@
   const id = params.get('id');
 
   if (id) {
-    const all = JSON.parse(localStorage.getItem('market49-listings') || '[]');
-    const item = all.find(l => l.id === id);
+  const all = JSON.parse(localStorage.getItem('market49-listings') || '[]');
+  const item = all.find(l => l.id === id);
 
-    if (item) {
-      document.querySelector('.listing-img img').src = item.image || `https://placehold.co/600x450/e0e0e0/666?text=${encodeURIComponent(item.name)}`;
-      document.querySelector('.listing-img img').alt = item.name;
-      document.querySelector('.listing-title').textContent = item.name;
-      document.querySelector('.listing-price').textContent = item.price;
-      document.querySelector('.listing-desc').textContent = item.description || 'No description provided.';
-      document.title = `${item.name} — Market49`;
-    }
+  if (item) {
+    document.querySelector('.listing-img img').src = item.image || `https://placehold.co/600x450/e0e0e0/666?text=${encodeURIComponent(item.name)}`;
+    document.querySelector('.listing-title').textContent = item.name;
+    document.querySelector('.listing-price').textContent = item.price;
+    document.querySelector('.listing-desc').textContent = item.description || 'No description provided.';
+    document.title = `${item.name} — Market49`;
+  } else {
+    document.querySelector('.listing-title').textContent = 'Listing not found';
+    document.querySelector('.listing-desc').textContent = 'This listing may have been removed.';
   }
+} else {
+  document.querySelector('.listing-title').textContent = 'No listing selected';
+  document.querySelector('.listing-desc').textContent = 'Browse listings to view details.';
+}
 
   // Buy Now spinner
   document.querySelector('.btn-primary').addEventListener('click', (e) => {
