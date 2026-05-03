@@ -187,14 +187,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const posted = JSON.parse(localStorage.getItem('market49-listings') || '[]');
     posted.forEach(item => {
       grid.insertAdjacentHTML('afterbegin', `
-        <a href="listing-detail.html?id=${item.id}" class="card" data-name="${item.name}">
-          <div class="card-img"><img src="${item.image || 'https://placehold.co/400x300/e0e0e0/666?text=' + encodeURIComponent(item.name)}" alt="${item.name}"></div>
-          <div class="card-body">
-            <p class="card-name">${item.name}</p>
-            <p class="card-price">${item.price}</p>
-          </div>
-        </a>
-      `);
+  <a href="listing-detail.html?id=${item.id}" class="card" data-name="${item.name}">
+    <div class="card-img"><img src="${item.image || 'https://placehold.co/400x300/e0e0e0/666?text=' + encodeURIComponent(item.name)}" alt="${item.name}"></div>
+    <div class="card-body">
+      <p class="card-name">${item.name}</p>
+      <p class="card-price">${item.price}</p>
+    </div>
+    <div class="card-footer">
+      <span></span>
+      <div class="card-actions">
+        <button class="like-btn" aria-label="Save">🤍</button>
+        <button class="add-cart-btn" aria-label="Add to cart">🛒</button>
+        
+      </div>
+    </div>
+  </a>
+`);
     });
   }
 
@@ -392,7 +400,7 @@ const matches = [...posted, ...listings].filter(item =>
   const postForm = document.getElementById('postForm');
   if (postForm) {
     const imageInput = document.getElementById('postImage');
-    const MAX_IMAGE_BYTES = 2 * 1024 * 1024; // 2MB
+    const MAX_IMAGE_BYTES = 5 * 1024 * 1024; // 2MB
 
     function readImageAsDataURL(file) {
       return new Promise((resolve, reject) => {
@@ -442,7 +450,7 @@ const matches = [...posted, ...listings].filter(item =>
       if (imageInput.files && imageInput.files[0]) {
         const file = imageInput.files[0];
         if (file.size > MAX_IMAGE_BYTES) {
-          imageErr.textContent = 'Image is over 2MB. Pick a smaller file.';
+          imageErr.textContent = 'Image is over 5MB. Pick a smaller file.';
           imageErr.style.display = 'block';
           valid = false;
         } else {
