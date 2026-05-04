@@ -105,16 +105,16 @@ function updateCartBadge() {
 
 
 const listings = [
-  { name: 'Calculus Textbook, 3rd Ed.', price: '$35.00', page: 'listing-detail.html' },
-  { name: 'Mechanical Keyboard',        price: '$60.00', page: 'listing-detail.html' },
-  { name: 'HDMI Cable 6ft',             price: '$12.00', page: 'listing-detail.html' },
-  { name: 'Adjustable Desk Lamp',       price: '$25.00', page: 'listing-detail.html' },
-  { name: 'North Face Backpack',        price: '$45.00', page: 'listing-detail.html' },
-  { name: '24" Monitor',                price: '$120.00', page: 'listing-detail.html' },
-  { name: 'Scientific Calculator',      price: '$15.00', page: 'listing-detail.html' },
-  { name: 'Dorm Mini Fridge',           price: '$80.00', page: 'listing-detail.html' },
-  { name: 'Laptop Stand',               price: '$22.00', page: 'listing-detail.html' },
-  { name: 'USB-C Hub',                  price: '$30.00', page: 'listing-detail.html' },
+  { id: 'hc_calculus', name: 'Calculus Textbook, 3rd Ed.', price: '$35.00', description: 'Great condition, only used for one semester.', image: 'https://placehold.co/600x450/e0e0e0/666?text=Calculus' },
+  { id: 'hc_keyboard', name: 'Mechanical Keyboard',        price: '$60.00', description: 'Mechanical keyboard with blue switches.', image: 'https://placehold.co/600x450/e0e0e0/666?text=Keyboard' },
+  { id: 'hc_hdmi',     name: 'HDMI Cable 6ft',             price: '$12.00', description: '6ft HDMI cable, like new.', image: 'https://placehold.co/600x450/e0e0e0/666?text=HDMI' },
+  { id: 'hc_lamp',     name: 'Adjustable Desk Lamp',       price: '$25.00', description: 'LED desk lamp with adjustable arm.', image: 'https://placehold.co/600x450/e0e0e0/666?text=Lamp' },
+  { id: 'hc_backpack', name: 'North Face Backpack',        price: '$45.00', description: 'Black North Face backpack, gently used.', image: 'https://placehold.co/600x450/e0e0e0/666?text=Backpack' },
+  { id: 'hc_monitor',  name: '24" Monitor',                price: '$120.00', description: '24-inch 1080p monitor.', image: 'https://placehold.co/600x450/e0e0e0/666?text=Monitor' },
+  { id: 'hc_calc',     name: 'Scientific Calculator',      price: '$15.00', description: 'TI-30X scientific calculator.', image: 'https://placehold.co/600x450/e0e0e0/666?text=Calculator' },
+  { id: 'hc_fridge',   name: 'Dorm Mini Fridge',           price: '$80.00', description: 'Compact mini fridge, runs cold.', image: 'https://placehold.co/600x450/e0e0e0/666?text=Fridge' },
+  { id: 'hc_stand',    name: 'Laptop Stand',               price: '$22.00', description: 'Adjustable aluminum laptop stand.', image: 'https://placehold.co/600x450/e0e0e0/666?text=Stand' },
+  { id: 'hc_hub',      name: 'USB-C Hub',                  price: '$30.00', description: '7-port USB-C hub.', image: 'https://placehold.co/600x450/e0e0e0/666?text=Hub' },
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -292,7 +292,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const posted = JSON.parse(localStorage.getItem('market49-listings') || '[]')
   .map(item => ({ name: item.name, price: item.price, page: `listing-detail.html?id=${item.id}` }));
 
-const matches = [...posted, ...listings].filter(item =>
+const hardcoded = listings.map(item => ({
+  name: item.name,
+  price: item.price,
+  page: `listing-detail.html?id=${item.id}`
+}));
+
+const matches = [...posted, ...hardcoded].filter(item =>
   item.name.toLowerCase().includes(query)
 );
 
